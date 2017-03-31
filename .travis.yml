@@ -9,6 +9,5 @@ before_install:
     - sudo apt-get install -y time
 
 install:
-    - rakudobrew build-panda
-    - panda installdeps .
-    - panda install File::Find
+    - rakudobrew build-zef
+    - zef install .
