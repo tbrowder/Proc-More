@@ -10,4 +10,5 @@ before_install:
 
 install:
     - rakudobrew build-zef
-    - zef installdeps .
+    - zef install --depsonly .
+    - zef test .

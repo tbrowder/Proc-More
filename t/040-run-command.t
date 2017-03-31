@@ -7,5 +7,9 @@ use File::Temp;
 
 plan 1;
 
-my $res;
-dies-ok { $res = run-command 'fooie'; die if $res; };
+my ($exitcode, $stderr, $stdout);
+dies-ok { $exitcode = run-command 'fooie'; die if $exitcode; }
+dies-ok { $exitcode = run-command 'fooie', :dir($*TMPDIR); die if $exitcode; };
+dies-ok { ($exitcode, $stderr, $stdout) = run-command 'fooie', :dir($*TMPDIR), :all; die if $exitcode; };
+
+# run
