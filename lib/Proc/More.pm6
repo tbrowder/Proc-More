@@ -255,13 +255,13 @@ sub time-command(Str:D $cmd,
 # Subroutine: run-command
 # Purpose : Run a system command using class Proc.
 # Params  : A string that contains a command suitable using Perl 6's run routine, and three named parameters that describe inputs and desired outputs.
-# Returns : Either the exit code (default), a list of exit code and results from stderr and stderr, or just the results from stdout.
-sub run-command($cmd, :$dir, :$out, :$all) is export(:run-command) {
+# Returns : Either the exit code (default), a list of exit code and results from stderr and stderr, or just the results from stdout.  There is also the capability to send debug messages to stdout.
+sub run-command($cmd, :$dir, :$out, :$all, :$debug) is export(:run-command) {
     # default is to return the exit code which should be zero (false) for a successful command execuiton
     # :dir runs the command in 'dir'
     # :all returns a list of three items: exit code, stderr, and stdout
     # :out returns stdout
-
+    # :debug prints extra info to stdout AFTER the proc command
     my $cwd = $*CWD;
     chdir $dir if $dir;
     my $proc = run $cmd.words, :err, :out;
@@ -270,7 +270,7 @@ sub run-command($cmd, :$dir, :$out, :$all) is export(:run-command) {
     my $exitcode = $proc.exitcode;
     my $stderr   = $proc.err.slurp-rest;
     my $stdout   = $proc.out.slurp-rest;
-    if $exitcode {
+    if $exitcode && $debug {
         say "ERROR:  Command '$cmd' returned with exit code '$exitcode'.";
         say "  stderr: $stderr" if $stderr;
         say "  stdout: $stdout" if $stdout;
