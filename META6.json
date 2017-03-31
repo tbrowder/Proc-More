@@ -1,0 +1,26 @@
+{
+    "perl"        : "6",
+    "name"        : "Proc::More",
+    "version"     : "0.2.0",
+    "description" : "Provides functions using class",
+    "authors"     : [ "github:tbrowder" ],
+    "license"     : "Artistic 2.0",
+    "source-url"  : "https://github.com/tbrowder/Proc-More-Perl6/archive/v0.2.0.zip",
+    "support"     : {
+        "bugtracker" : "https://github.com/tbrowder/Proc-More-Perl6/issues",
+        "source"     : "https://github.com/tbrowder/Proc-More-Perl6/tree/v0.2.0"
+    },
+    "provides"    : {
+        "Proc::More" : "lib/Proc/More.pm6"
+    },
+    "test-depends"     : [
+	"Test::META"
+    ],
+    "depends" : [
+    ],
+    "resources" : [
+    ],
+    "tags" : [
+	"POSIX time function", "proc run"
+    ]
+}
