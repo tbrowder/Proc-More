@@ -5,8 +5,8 @@
 
 This module provides functions using Perl 6's **Proc** class.  Two of the most noteworthy ones are:
 
-+ `time-command`
 + `run-command`
++ `time-command`
 
 This module uses the GNU **time** command (usually installed as '/usr/bin/time') to time user commands.
 
@@ -14,12 +14,12 @@ This module uses the GNU **time** command (usually installed as '/usr/bin/time')
 
 ## Synopsis
 
-    use Proc::More :time-command;
-    my $cmd = "some-user-prog arg1 arg2";
-    my $user-time = time-command $cmd;
-    say $user-time; # output: 42.70 # seconds
-
     use Proc::More :run-command;
+    my $cmd = "some-user-prog arg1 arg2";
+	my $other-dir = $*TMPDIR";
+    my ($exitcode, $stderr, $stdout) = run-command $cmd, :dir($other-dir), :all;
+
+    use Proc::More :time-command;
     my $cmd = "some-user-prog arg1 arg2";
     my $user-time = time-command $cmd;
     say $user-time; # output: 42.70 # seconds
