@@ -11,3 +11,4 @@ before_install:
 install:
     - rakudobrew build-panda
     - panda installdeps .
+    - panda install File::Find
