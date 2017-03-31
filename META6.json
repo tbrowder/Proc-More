@@ -14,7 +14,8 @@
         "Proc::More" : "lib/Proc/More.pm6"
     },
     "test-depends"     : [
-	"Test::META"
+	"Test::META",
+        "File::Temp"
     ],
     "depends" : [
     ],

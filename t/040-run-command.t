@@ -3,6 +3,8 @@ use Test;
 
 use Proc::More :ALL;
 
+use File::Temp;
+
 plan 1;
 
 my $res;

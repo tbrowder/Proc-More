@@ -1,5 +1,8 @@
 use v6;
+
 use Test;
+
+use File::Temp;
 
 use Proc::More :ALL;
 
@@ -27,20 +30,19 @@ for 1..100 {
     $i += 2;
 }
 HERE
-my $script = '/tmp/prog';
-spurt $script, $prog;
 
-my $cmd = "perl6 $script";
+my ($prog-file, $fh) = tempfile;
+$fh.print: $prog;
+$fh.close;
+
+my $cmd = "perl6 $prog-file";
 
 my ($res, $typ, $fmt);
-#my $debug = 0;
-my $debug = 1;
+my $debug = 0;
 
 my @typ = <a all r real u user s sys>;
 my @fmt = ['s', 'seconds', 'h', 'hms', ':', 'h:m:s'];
-
-my $tn = 0;
-# check a bad or unknown command
+my $tn = 0; # check a bad or unknown command
 dies-ok { $res = time-command 'fooie' };
 say "debug: test { ++$tn }" if $debug;
 
