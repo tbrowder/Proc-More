@@ -10,4 +10,4 @@ before_install:
 
 install:
     - rakudobrew build-zef
-    - zef install .
+    - zef installdeps .
