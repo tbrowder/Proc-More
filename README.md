@@ -7,7 +7,7 @@ This module provides functions using Perl 6's **Proc** class.  Two of the most n
 + `time-command`
 + `run-command`
 
-# WARNING:  These functions have been tested only on Linux systems (but the author plans are to port them to other OSs).
+### WARNING:  These functions have been tested only on Linux systems (but the author plans to port them to other OSs).
     
     
 
