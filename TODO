@@ -9,17 +9,21 @@ add test for list return [DONE]
 
 add explict tests with an explicit example of a /usr/bin/time result
 
+add more run-command tests
+
 Possibilities for future releases
 =================================
 
-- add option to control number of decimal places in output
+- time-command
 
-- add capability to report in days for long-running commands
+    + add option to control number of decimal places in time output
 
-- consider an asynchronous mode to sample proc file system
-  periodically
+    +  add capability to report time in days for long-running commands
 
-- add options to report time in minutes, hours, and days only (as
-  decimal fractions)
+    +  consider an asynchronous mode to sample proc file system
+       periodically
 
-- consider adding other data provided by the system time command
+    + add options to report time in minutes, hours, and days only (as
+      decimal fractions)
+
+    + consider adding other data provided by the system time command
