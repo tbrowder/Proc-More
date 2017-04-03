@@ -185,11 +185,12 @@ sub seconds-to-hms($Time,
 #------------------------------------------------------------------------------
 # Subroutine: time-command
 # Purpose : Collect the process times for a system or user command (using the GNU 'time' command).
-# Params : The command as a string, and three named parameters that describe which type of time values to return and in what format. Note that special characters are not recognized by the 'run' routine, so results may not be as expected if they are part of the command.
+# Params : The command as a string, and four named parameters that describe which type of time values to return and in what format. Note that special characters are not recognized by the 'run' routine, so results may not be as expected if they are part of the command.
 # Returns : A string consisting in one or all of real (wall clock), user, and system times (in one of four formats), or a list as in the original API.
 sub time-command(Str:D $cmd,
                  :$typ where { $typ ~~ &typ } = 'u',            # see token 'typ' definition
                  :$fmt where { !$fmt.defined || $fmt ~~ &fmt }, # see token 'fmt' definition
+		 :$dir,                                         # run command in dir 'dir'
                  Bool :$list = False,                           # return a list as in the original API
                 ) is export(:time-command) {
     # runs the input cmd using the system 'run' function and returns
@@ -219,9 +220,14 @@ sub time-command(Str:D $cmd,
 
     $TCMD ~= ' -p'; # the '-t' option gives the standard POSIX output display
 
-    # new code
     my $CMD = "$TCMD $cmd";
-    my ($exitcode, $stderr, $stdout) = run-command $CMD, :all;
+    my ($exitcode, $stderr, $stdout);
+    if $dir {
+	($exitcode, $stderr, $stdout) = run-command $CMD, :all, :$dir;
+    }
+    else {
+	($exitcode, $stderr, $stdout) = run-command $CMD, :all;
+    }
     if $exitcode {
         die "FATAL: The '$CMD' command returned a non-zero exitcode: $exitcode";
     }
@@ -254,9 +260,14 @@ sub time-command(Str:D $cmd,
 #------------------------------------------------------------------------------
 # Subroutine: run-command
 # Purpose : Run a system command using class Proc.
-# Params  : A string that contains a command suitable using Perl 6's run routine, and three named parameters that describe inputs and desired outputs.
+# Params  : A string that contains a command suitable using Perl 6's run routine, and four named parameters that describe inputs and desired outputs.
 # Returns : Either the exit code (default), a list of exit code and results from stderr and stderr, or just the results from stdout.  There is also the capability to send debug messages to stdout.
-sub run-command($cmd, :$dir, :$out, :$all, :$debug) is export(:run-command) {
+sub run-command(Str:D $cmd,
+		:$out,
+		:$all,
+		Bool :$debug = False,
+		:$dir,                # run command in dir 'dir'
+	       ) is export(:run-command) {
     # default is to return the exit code which should be zero (false) for a successful command execuiton
     # :dir runs the command in 'dir'
     # :all returns a list of three items: exit code, stderr, and stdout
