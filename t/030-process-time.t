@@ -42,8 +42,9 @@ my $debug = 0;
 
 my @typ = <a all r real u user s sys>;
 my @fmt = ['s', 'seconds', 'h', 'hms', ':', 'h:m:s'];
-my $tn = 0; # check a bad or unknown command
-dies-ok { $res = time-command 'fooie' };
+my $tn = 0; # for debugging, test number, check a bad or unknown command
+
+dies-ok { $res = time-command 'fooie', :$fmt };
 say "debug: test { ++$tn }" if $debug;
 
 # check the default for both args

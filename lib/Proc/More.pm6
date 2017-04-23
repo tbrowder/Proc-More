@@ -273,6 +273,7 @@ sub run-command(Str:D $cmd,
     # :all returns a list of three items: exit code, stderr, and stdout
     # :out returns stdout
     # :debug prints extra info to stdout AFTER the proc command
+
     my $cwd = $*CWD;
     chdir $dir if $dir;
     my $proc = run $cmd.words, :err, :out;
