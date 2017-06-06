@@ -247,6 +247,7 @@ sub time-command(Str:D $cmd,
 # Params  : A string that contains a command suitable using Perl 6's run routine, and four named parameters that describe inputs and desired outputs.
 # Returns : Either the exit code (default), a list of exit code and results from stderr and stderr, or just the results from stdout.  There is also the capability to send debug messages to stdout.
 sub run-command(Str:D $cmd,
+                :$err,
 		:$out,
 		:$all,
 		Bool :$debug = False,
@@ -255,17 +256,23 @@ sub run-command(Str:D $cmd,
     # default is to return the exit code which should be zero (false) for a successful command execuiton
     # :dir runs the command in 'dir'
     # :all returns a list of three items: exit code, stderr, and stdout
+    # :err returns stderr
     # :out returns stdout
     # :debug prints extra info to stdout AFTER the proc command
 
     my $cwd = $*CWD;
     chdir $dir if $dir;
+    #=== may be in another dir ===
     my $proc = run $cmd.words, :err, :out;
+    my $exitcode = $proc.exitcode;
+    my $stderr   = $proc.err.slurp if $all || $err;
+    my $stdout   = $proc.out.slurp if $all || $out;
+    # always need to close the two file handles
+    $proc.err.close;
+    $proc.out.close;
+    #=== leave the other dir ===
     chdir $cwd if $dir;
 
-    my $exitcode = $proc.exitcode;
-    my $stderr   = $proc.err.slurp: :close;
-    my $stdout   = $proc.out.slurp: :close;
     if $exitcode && $debug {
         say "ERROR:  Command '$cmd' returned with exit code '$exitcode'.";
         say "  stderr: $stderr" if $stderr;

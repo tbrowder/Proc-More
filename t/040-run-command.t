@@ -16,7 +16,7 @@ dies-ok { $exitcode = run-command 'fooie', :dir($*TMPDIR); die if $exitcode; };
 cmp-ok $exitcode, '!=', 0;
 dies-ok { ($exitcode, $stderr, $stdout) = run-command 'fooie', :dir($*TMPDIR), :all; die if $exitcode; };
 cmp-ok $exitcode, '!=', 0;
-dies-ok { run-command 'ls -l', :dir($*TMPDIR), :all, :out, :err; }
+lives-ok { run-command 'ls -l', :dir($*TMPDIR), :all, :out, :err; }
 
 # run some real commands with errors
 # tests 8-13
