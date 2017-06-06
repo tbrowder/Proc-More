@@ -239,22 +239,6 @@ sub time-command(Str:D $cmd,
         return read-sys-time($result, :$typ, :$list);
     }
 
-    =begin pod
-    my $args = "$TCMD $cmd";
-    my $proc = run $args.words, :err;
-    my $exitcode = $proc.exitcode;
-    if $exitcode {
-        die "FATAL: The '$args' command returned a non-zero exitcode: $exitcode";
-    }
-    my $result = $proc.err.slurp-rest;
-    if $fmt.defined {
-        return read-sys-time($result, :$typ, :$fmt, :$list);
-    }
-    else {
-        return read-sys-time($result, :$typ, :$list);
-    }
-    =end pod
-
 } # time-command
 
 #------------------------------------------------------------------------------
@@ -280,8 +264,8 @@ sub run-command(Str:D $cmd,
     chdir $cwd if $dir;
 
     my $exitcode = $proc.exitcode;
-    my $stderr   = $proc.err.slurp-rest;
-    my $stdout   = $proc.out.slurp-rest;
+    my $stderr   = $proc.err.slurp: :close;
+    my $stdout   = $proc.out.slurp: :close;
     if $exitcode && $debug {
         say "ERROR:  Command '$cmd' returned with exit code '$exitcode'.";
         say "  stderr: $stderr" if $stderr;
