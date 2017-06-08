@@ -265,11 +265,9 @@ sub run-command(Str:D $cmd,
     #=== may be in another dir ===
     my $proc = run $cmd.words, :err, :out;
     my $exitcode = $proc.exitcode;
-    my $stderr   = $proc.err.slurp if $all || $err;
-    my $stdout   = $proc.out.slurp if $all || $out;
-    # always need to close the two file handles
-    $proc.err.close;
-    $proc.out.close;
+    # always need to close file handles if used
+    my $stderr   = $proc.err.slurp(:close) if $all || $err;
+    my $stdout   = $proc.out.slurp(:close) if $all || $out;
     #=== leave the other dir ===
     chdir $cwd if $dir;
 
