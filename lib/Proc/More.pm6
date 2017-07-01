@@ -229,7 +229,11 @@ sub time-command(Str:D $cmd,
 	($exitcode, $stderr, $stdout) = run-command $CMD, :all;
     }
     if $exitcode {
-        die "FATAL: The '$CMD' command returned a non-zero exitcode: $exitcode";
+        die qq:to/HERE/;
+            FATAL: The '$CMD' command returned a non-zero exitcode: $exitcode
+                   stderr: $stderr
+                   stdout: $stdout
+            HERE
     }
     my $result = $stderr; # the time command puts all output to stderr
     if $fmt.defined {
