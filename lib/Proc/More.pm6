@@ -192,6 +192,7 @@ sub time-command(Str:D $cmd,
                  :$fmt where { !$fmt.defined || $fmt ~~ &fmt }, # see token 'fmt' definition
 		 :$dir,                                         # run command in dir 'dir'
                  Bool :$list = False,                           # return a list as in the original API
+                 Hash() :$env = %*ENV, 
                 ) is export(:time-command) {
     # runs the input cmd using the system 'run' function and returns
     # the process times shown below
@@ -223,10 +224,10 @@ sub time-command(Str:D $cmd,
     my $CMD = "$TCMD $cmd";
     my ($exitcode, $stderr, $stdout);
     if $dir {
-	($exitcode, $stderr, $stdout) = run-command $CMD, :all, :$dir;
+	($exitcode, $stderr, $stdout) = run-command $CMD, :all, :$env, :$dir;
     }
     else {
-	($exitcode, $stderr, $stdout) = run-command $CMD, :all;
+	($exitcode, $stderr, $stdout) = run-command $CMD, :all, :$env;
     }
     if $exitcode {
         die qq:to/HERE/;
