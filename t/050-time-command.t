@@ -7,12 +7,14 @@ use File::Temp;
 
 plan 13;
 
+my $debug = 0;
 my $time;
 
 # tests 1-4
 dies-ok { time-command 'fooie'; }
 dies-ok { time-command 'fooie', :dir($*TMPDIR); }
 lives-ok { $time = time-command 'ls -l', :dir($*TMPDIR); }
+say "DEBUG: \$time = '$time'" if $debug;
 cmp-ok $time, '>=', 0;
 
 # tests 5-8
@@ -48,6 +50,7 @@ $fh2.close;
 # tests 11-12
 $cmd = "perl6 $f";
 lives-ok { $time = time-command $cmd, :dir($*TMPDIR); }
+say "DEBUG: \$time = '$time'" if $debug;
 cmp-ok $time, '>', 0;
 
 # one more test

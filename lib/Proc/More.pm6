@@ -124,6 +124,7 @@ sub read-sys-time($result,
         when /^ :i s/ {
             $res = seconds-to-hms(+$Sts, :$fmt);
         }
+	default { die "FATAL: no option found"; }
     }
 
     if $list {
@@ -192,7 +193,7 @@ sub time-command(Str:D $cmd,
                  :$fmt where { !$fmt.defined || $fmt ~~ &fmt }, # see token 'fmt' definition
 		 :$dir,                                         # run command in dir 'dir'
                  Bool :$list = False,                           # return a list as in the original API
-                 Hash() :$env = %*ENV, 
+                 Hash() :$env = %*ENV,
                 ) is export(:time-command) {
     # runs the input cmd using the system 'run' function and returns
     # the process times shown below
@@ -257,6 +258,7 @@ sub run-command(Str:D $cmd,
 		:$all,
 		Bool :$debug = False,
 		:$dir,                # run command in dir 'dir'
+                Hash() :$env = %*ENV,
 	       ) is export(:run-command) {
     # default is to return the exit code which should be zero (false) for a successful command execuiton
     # :dir runs the command in 'dir'
