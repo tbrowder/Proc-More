@@ -7,7 +7,7 @@
     "license"     : "Artistic-2.0",
     "source-url"  : "https://github.com/tbrowder/Proc-More-Perl6.git",
     "support"     : {
-        "bugtracker" : "https://github.com/tbrowder/Proc-More-Perl6/issues",
+        "bugtracker" : "https://github.com/tbrowder/Proc-More-Perl6/issues"
     },
     "provides"    : {
         "Proc::More" : "lib/Proc/More.pm6"
