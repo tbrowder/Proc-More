@@ -1,14 +1,13 @@
 {
     "perl"        : "6",
     "name"        : "Proc::More",
-    "version"     : "0.2.0",
-    "description" : "Provides functions using class",
+    "version"     : "0.3.0",
+    "description" : "Provides functions for using class Proc.",
     "authors"     : [ "github:tbrowder" ],
     "license"     : "Artistic-2.0",
-    "source-url"  : "https://github.com/tbrowder/Proc-More-Perl6/archive/v0.2.0.zip",
+    "source-url"  : "https://github.com/tbrowder/Proc-More-Perl6.git",
     "support"     : {
         "bugtracker" : "https://github.com/tbrowder/Proc-More-Perl6/issues",
-        "source"     : "https://github.com/tbrowder/Proc-More-Perl6/tree/v0.2.0"
     },
     "provides"    : {
         "Proc::More" : "lib/Proc/More.pm6"
