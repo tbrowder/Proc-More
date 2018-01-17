@@ -1,5 +1,5 @@
 # Proc::More
-[![Build Status](https://travis-ci.org/tbrowder/Proc-More-Perl6.svg?branch=master)](https://travis-ci.org/tbrowder/Proc-More-Perl6)
+[![Build Status](https://travis-ci.org/tbrowder/Proc-More-Perl6)](https://travis-ci.org/tbrowder/Proc-More-Perl6)
 
 ### Note: This module replaces module `Linux::Proc::Time` which is deprecated.
 
