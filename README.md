@@ -113,8 +113,9 @@ corrections to this module, and pull requests, bug reports, and
 suggestions are always welcome.
 
 
-## LICENSE and COPYRIGHT
+COPYRIGHT and LICENSE
+=====================
 
-Artistic 2.0. See [LICENSE.md](https://github.com/tbrowder/Proc-More/blob/master/LICENSE).
+Copyright © 2017-2021 Tom Browder
 
-Copyright (C) 2017-2021 Thomas M. Browder, Jr. <<tbrowder@cpan.org>>
+This library is free software; you may redistribute or modify it under the Artistic License 2.0.
