@@ -1,6 +1,8 @@
 Revision history for Proc-More
 
 {{$NEXT}}
+
+0.4.0  2021-08-01T08:04:38-05:00
     - convert to App::Mi6 format
     - convert to workflow testing
 
