@@ -1,3 +1,5 @@
+[![Actions Status](https://github.com/tbrowder/Proc-More/workflows/test/badge.svg)](https://github.com/tbrowder/Proc-More/actions)
+
 ### Note: This module replaces module `Linux::Proc::Time` which is deprecated.
 
 This module provides functions using Perl 6's **Proc** class.  Two of the most noteworthy ones are:
