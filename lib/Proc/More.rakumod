@@ -1,4 +1,4 @@
-unit module Proc::More:auth<github:tbrowder>;
+unit module Proc::More:auth<cpan:TBROWDER>;
 
 # file:  ALL-SUBS.md
 # title: Subroutines Exported by the `:ALL` Tag
