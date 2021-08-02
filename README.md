@@ -2,14 +2,15 @@
 
 ### Note: This module replaces module `Linux::Proc::Time` which is deprecated.
 
-This module provides functions using Perl 6's **Proc** class.  Two of the most noteworthy ones are:
+This module provides functions using Raku's **Proc** class.  Two of the most noteworthy ones are:
 
 + `run-command`
 + `time-command`
 
-This module uses the GNU **time** command (usually installed as '/usr/bin/time') to time user commands.
+This module uses the GNU **time** command (usually installed as
+'/usr/bin/time') to time user commands.
 
-### WARNING:  These functions have been tested only on Linux systems (but the author plans to port them to other OSs).
+### WARNING:  These functions have been successfully tested only on Linux and OSX systems (but the author plans to port them to other OSs).
 
 ## Synopsis
 
@@ -26,15 +27,17 @@ This module uses the GNU **time** command (usually installed as '/usr/bin/time')
 
 ## Getting the **time** command
 
-On Debian hosts the **time** command may not installed by default but it is available in
-package 'time'.  It can also be built from source available at the Free Software
-Foundation's git site.  Clone the source repository:
+On Debian hosts the **time** command may not installed by default, but
+it is available in package 'time'.  It can also be built from source
+available at the Free Software Foundation's git site.  Clone the
+source repository:
 
     $ git clone https://git.savannah.gnu.org/git/time.git
 
 The build and install instructions are in the repository along with the source code.
 
-Unfortunately, there is no equivalent command available for Windows unless you install Cygwin or an equivalent system.
+Unfortunately, there is no equivalent command available for Windows
+unless you install Cygwin or an equivalent system.
 
 ## The **time** command
 
@@ -48,14 +51,15 @@ This module will look for time in the following locations and order:
 - /usr/bin/time
 
 If the **time** command is not found, an exception will be thrown.
-Likewise, if the **time** command returns an exit code other than zero, an exception will be thrown.
+Likewise, if the **time** command returns an exit code other than
+zero, an exception will be thrown.
 
 # The Proc::More module
 
 The routines are described in detail in
 [ALL-SUBS](https://github.com/tbrowder/Proc-More/blob/master/docs/ALL-SUBS.md)
-which shows a short description of each exported routine along along
-with its complete signature.
+which shows a short description of each exported routine along with
+its complete signature.
 
 ## The :$typ and :$fmt named parameters
 
@@ -83,9 +87,9 @@ my token fmt { ^ :i             # the desired format for the returned time(s)
 
 ## Status
 
-This version is 0.\*.\* which is considered usable but may not be ready
-for production.  The APIs are subject to change in which case the
-version major number will be updated. Note that newly added
+This version is 0.\*.\* which is considered usable but may not be
+ready for production.  The APIs are subject to change in which case
+the version major number will be updated. Note that newly added
 subroutines or application programs are not considered a change in
 API.
 
@@ -116,6 +120,6 @@ suggestions are always welcome.
 COPYRIGHT and LICENSE
 =====================
 
-Copyright © 2017-2021 Tom Browder
+Copyright © 2017-2021 Tom Browder (tbrowder@cpan.org)
 
 This library is free software; you may redistribute or modify it under the Artistic License 2.0.
